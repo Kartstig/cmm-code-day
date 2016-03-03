@@ -65,9 +65,9 @@ $(document).ready(function() {
                 <td>{{ t.project.name }}</td>
                 <td>{{ t.task.name }}</td>
                 <td>{{ t.start }}</td>
-                <td>{{ "%.1g" % t.duration }}</td>
+                <td>{{ "%.2f" % t.duration }}</td>
                 <td>
-                    <a class="btn btn-xs btn-warning" href="/task_entry/{{ t.id }}/">Edit</a>
+                    <a class="btn btn-xs btn-warning" href="/task_entry/{{ t.id }}/edit">Edit</a>
                 </td>
                 <td>
                     <form action="/task_entry/{{ t.id }}/delete/" method="post">

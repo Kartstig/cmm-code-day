@@ -59,11 +59,11 @@ def te_create():
             db.session.add(te)
             db.session.commit()
             flash("Created new time entry")
-            return redirect(url_for('index'))
         except:
             db.session.rollback()
+        return redirect(url_for('index'))
 
-@app.route('/task_entry/edit/<int:id>', methods=['GET','POST'])
+@app.route('/task_entry/<int:id>/edit/', methods=['GET','POST'])
 def te_edit(id=None):
     errors = {}
     if id:
@@ -75,9 +75,24 @@ def te_edit(id=None):
                 db.session.commit()
                 flash("Updated successfully")
             except:
-                db.session.rollback
+                db.session.rollback()
             return redirect(url_for('index'))
+        return render_template('edit.html', error=errors, user=current_user, te=te)
 
+@app.route('/task_entry/<int:id>/delete/', methods=['POST'])
+def te_delete(id=None):
+    errors = {}
+    if id:
+        te = db.session.query(TaskEntry).filter_by(id=id).one()
+        if request.method == 'POST' and te:
+            try:
+                db.session.delete(te)
+                db.session.commit()
+                flash("Deleted Task!")
+            except:
+                flash("Failed to delete")
+                db.session.rollback()
+        return redirect(url_for('index'))
 
 @app.route('/login/', methods=['GET','POST'])
 def login():

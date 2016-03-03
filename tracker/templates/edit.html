@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+div.header {
+    text-align: center; 
+}
+img.timesheet {
+    max-width: 15em;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="header">
+            <h1>{{ te.project.customer.company }}</h1>
+            <h2>{{ te.project.name }}</h2>
+            <h3>{{ te.task.name }}</h3>
+        </div>
+        <form class="editForm" action="/task_entry/{{ te.id }}/edit/" method="post">
+            <center>
+            <br>
+            <br>
+            <label for="duration">Hours Logged</label>
+            <input type="text" name="duration" value="{{ te.duration }}">
+            <button type="submit" class="btn btn-primary">Update</button>
+            </center>
+        </form>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
+
+{% endblock %}
