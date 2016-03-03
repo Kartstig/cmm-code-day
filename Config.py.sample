@@ -1,0 +1,32 @@
+#!/usr/bin/ python
+# -*- coding: utf-8 -*-
+
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    SECRET_KEY = 'doublesecretprobation'
+
+class ProductionConfig(Config):
+    DB_USER = 'user'
+    DB_PASS = 'password'
+    DB_HOST = 'host'
+    DB_NAME = 'db_name'
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://{}:{}@{}/{}?charset=utf8&use_unicode=0'.\
+        format(DB_USER, DB_PASS, DB_HOST, DB_NAME)
+    SQLALCHEMY_POOL_RECYCLE = 1440
+    HOST = ''
+
+class DevelopmentConfig(Config):
+    DB_USER = 'user'
+    DB_PASS = 'password'
+    DB_HOST = 'host'
+    DB_NAME = 'db_name'
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://{}:{}@{}/{}?charset=utf8&use_unicode=0'.\
+        format(DB_USER, DB_PASS, DB_HOST, DB_NAME)
+    SQLALCHEMY_POOL_RECYCLE = 1440
+    HOST = ''
+    PORT = 4000
+    DEBUG = True
+
+class TestingConfig(Config):
+    TESTING = True
