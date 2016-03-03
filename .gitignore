@@ -1,0 +1,5 @@
+*.pyc
+Config.py
+tmp/*
+alembic.ini
+logs/*
