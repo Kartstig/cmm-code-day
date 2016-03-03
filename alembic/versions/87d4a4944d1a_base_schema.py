@@ -73,10 +73,12 @@ def upgrade():
         sa.Column('duration', sa.Float(precision=1, asdecimal=True)),
         sa.Column('task_id', sa.Integer, nullable=False),
         sa.Column('project_id', sa.Integer, nullable=False),
+        sa.Column('user_id', sa.Integer, nullable=False),
         sa.Column('created_at', sa.DateTime, nullable=False),
         sa.Column('updated_at', sa.DateTime, nullable=False),
         sa.ForeignKeyConstraint(['task_id'], ['tasks.id'], name='fk_task_entries_task_id_tasks_id'),
-        sa.ForeignKeyConstraint(['project_id'], ['projects.id'], name='fk_task_entries_project_id_projects_id')
+        sa.ForeignKeyConstraint(['project_id'], ['projects.id'], name='fk_task_entries_project_id_projects_id'),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id'], name='fk_task_entries_user_id_users_id')
         )
 
 def downgrade():
