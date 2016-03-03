@@ -58,7 +58,7 @@ def te_create():
         try:
             db.session.add(te)
             db.session.commit()
-            flash("Created new time entry"))
+            flash("Created new time entry")
             return redirect(url_for('index'))
         except:
             db.session.rollback()
@@ -73,7 +73,7 @@ def te_edit(id=None):
             try:
                 db.session.add(te)
                 db.session.commit()
-                flash("Updated successfully"))
+                flash("Updated successfully")
             except:
                 db.session.rollback
             return redirect(url_for('index'))
