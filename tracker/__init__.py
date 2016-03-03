@@ -32,6 +32,8 @@ def load_user(userid):
 
 @app.route('/', methods=['GET'])
 def index():
+    if current_user.is_anonymous:
+        return redirect(url_for('login'))
     bindings = {
         'error': None,
         'user': current_user,
