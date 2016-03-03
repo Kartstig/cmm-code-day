@@ -19,7 +19,6 @@ class User(Base, UserMixin):
     last_name           = Column(String(50))
     created_at          = Column(DateTime, nullable=False)
     updated_at          = Column(DateTime, nullable=False)
-    validation_token    = Column(String(64))
     last_login          = Column(DateTime)
 
     def __init__(self, username, password=None, first_name=None, last_name=None, 
