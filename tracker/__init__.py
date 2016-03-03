@@ -9,6 +9,10 @@ from flask.ext.login import LoginManager, login_user, \
 from config import app_config
 
 from tracker.models.User import User
+from tracker.models.Customer import Customer
+from tracker.models.Project import Project
+from tracker.models.Task import Task
+from tracker.models.TaskEntry import TaskEntry
 
 # Main Application and Config
 app = Flask(__name__)
@@ -30,6 +34,9 @@ def index():
         'error': None,
         'user': current_user
     }
+    if current_user and not current_user.is_anonymous:
+        u = get_user({'id': current_user.id})
+        bindings["task_entries"] = u.task_entries
     return render_template('index.html', **bindings)
 
 @app.route('/login/', methods=['GET','POST'])
