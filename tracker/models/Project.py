@@ -3,6 +3,7 @@
 
 from Base import Base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from datetime import datetime
 
 class Project(Base):
@@ -14,6 +15,10 @@ class Project(Base):
     name                = Column(String(50), nullable=False)
     created_at          = Column(DateTime, nullable=False)
     updated_at          = Column(DateTime, nullable=False)
+
+    customer = relationship("Customer",
+        foreign_keys="Project.customer_id",
+        backref="projects")
 
     def __init__(self, name, customer_id):
         timestamp = datetime.now()
