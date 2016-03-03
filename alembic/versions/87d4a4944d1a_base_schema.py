@@ -32,7 +32,7 @@ def upgrade():
     op.create_table(
         'customers',
         sa.Column('id', sa.Integer, primary_key=True),
-        sa.Column('company', sa.String(50), nullable=False),
+        sa.Column('company', sa.String(255), nullable=False),
         sa.Column('address1', sa.String(50)),
         sa.Column('address2', sa.String(50)),
         sa.Column('address3', sa.String(50)),
@@ -43,7 +43,7 @@ def upgrade():
         sa.Column('phone2', sa.String(50)),
         sa.Column('fax1', sa.String(50)),
         sa.Column('fax2', sa.String(50)),
-        sa.Column('email', sa.String(50)),
+        sa.Column('email', sa.String(255)),
         sa.Column('website1', sa.String(255)),
         sa.Column('website2', sa.String(255)),
         sa.Column('website3', sa.String(255)),

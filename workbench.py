@@ -1,6 +1,7 @@
 #!/usr/bin/ python
 # -*- coding: utf-8 -*-
 
+import csv
 from Config import *
 from tracker import db
 from tracker.models.Customer import Customer
@@ -17,6 +18,12 @@ def add_tasks():
     ]
 
     add_objects(tasks, Task)
+
+def load_csv():
+    with open('data.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        companies = [r for r in reader]
+    add_objects(companies, Customer)
 
 def add_objects(input_array, obj):
     try:
